@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — The Solutionists</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  /* CONTACT LAYOUT */
+  .contact-section { background: var(--white); padding: 80px 64px 120px; }
+  .contact-inner { display: grid; grid-template-columns: 5fr 7fr; gap: 96px; align-items: start; }
+
+  .contact-left { position: sticky; top: 104px; }
+  .contact-left h2 { font-family: 'Fraunces', serif; font-size: clamp(34px, 3.5vw, 52px); font-weight: 300; line-height: 1.08; color: var(--navy); margin-bottom: 20px; }
+  .contact-left h2 em { font-style: italic; color: var(--gold-deep); }
+  .contact-left .divider { width: 48px; height: 4px; background: linear-gradient(90deg, var(--gold), var(--gold-deep)); border-radius: 4px; margin-bottom: 24px; }
+  .contact-left p { font-size: 15px; line-height: 1.8; color: var(--text-mid); margin-bottom: 40px; }
+
+  .contact-details { display: flex; flex-direction: column; gap: 4px; }
+  .contact-detail { display: flex; gap: 16px; align-items: flex-start; padding: 24px 28px; border: 1px solid var(--border); border-radius: 14px; background: var(--off-white); transition: all 0.3s; }
+  .contact-detail:hover { border-color: var(--gold); background: var(--gold-pale); transform: translateX(4px); }
+  .contact-detail-icon { font-size: 22px; flex-shrink: 0; padding-top: 2px; }
+  .contact-detail h5 { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 4px; }
+  .contact-detail p { font-size: 14px; color: var(--text-mid); }
+  .contact-detail a { font-size: 14px; color: var(--navy); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+  .contact-detail a:hover { color: var(--gold-deep); }
+
+  /* FORM */
+  .contact-form-wrap { background: var(--off-white); border-radius: 24px; padding: 52px 48px; border: 1px solid var(--border); }
+  .form-title { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 300; color: var(--navy); margin-bottom: 8px; }
+  .form-subtitle { font-size: 14px; color: var(--text-mid); margin-bottom: 40px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  .form-group label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-mid); }
+  .form-group input, .form-group select, .form-group textarea {
+    background: var(--white); border: 1.5px solid var(--border); border-radius: 10px;
+    padding: 14px 18px; font-size: 15px; color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: all 0.25s; outline: none; width: 100%;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(240,165,0,0.1); }
+  .form-group textarea { resize: vertical; min-height: 140px; }
+  .form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%234a5a70' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 44px; }
+
+  .form-check { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 32px; }
+  .form-check input[type="checkbox"] { margin-top: 3px; accent-color: var(--gold); width: 16px; height: 16px; flex-shrink: 0; }
+  .form-check label { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
+
+  .form-submit { background: var(--navy); color: var(--white); font-size: 15px; font-weight: 600; padding: 16px 40px; border-radius: 12px; border: 2px solid var(--navy); cursor: pointer; transition: all 0.25s; width: 100%; font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.02em; }
+  .form-submit:hover { background: var(--gold); border-color: var(--gold); color: var(--navy); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(240,165,0,0.25); }
+
+  .form-success { display: none; text-align: center; padding: 48px; }
+  .form-success .success-icon { font-size: 48px; margin-bottom: 20px; }
+  .form-success h3 { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 300; color: var(--navy); margin-bottom: 12px; }
+  .form-success p { font-size: 15px; color: var(--text-mid); line-height: 1.7; }
+
+  /* CAPABILITIES SECTION */
+  .capabilities-section { background: var(--navy); padding: 100px 64px; }
+  .cap-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .cap-left h2 { font-family: 'Fraunces', serif; font-size: clamp(32px, 3.2vw, 50px); font-weight: 300; color: var(--white); line-height: 1.1; margin-bottom: 20px; }
+  .cap-left h2 em { font-style: italic; color: var(--gold); }
+  .cap-left p { font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.45); margin-bottom: 36px; }
+  .cap-right { display: flex; flex-direction: column; gap: 4px; }
+  .cap-item { padding: 24px 32px; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; display: flex; gap: 16px; align-items: center; transition: all 0.3s; }
+  .cap-item:hover { background: rgba(255,255,255,0.05); border-color: rgba(240,165,0,0.4); }
+  .cap-item-icon { font-size: 20px; flex-shrink: 0; }
+  .cap-item-text h5 { font-size: 15px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+  .cap-item-text p { font-size: 13px; color: rgba(255,255,255,0.4); }
+  .cap-item-arrow { margin-left: auto; color: rgba(255,255,255,0.2); flex-shrink: 0; transition: all 0.3s; }
+  .cap-item:hover .cap-item-arrow { color: var(--gold); transform: translateX(4px); }
+
+  /* FAQ */
+  .faq-section { background: var(--off-white); padding: 100px 64px; }
+  .faq-inner { max-width: 760px; margin: 0 auto; }
+  .faq-header { text-align: center; margin-bottom: 60px; }
+  .faq-header h2 { font-family: 'Fraunces', serif; font-size: clamp(32px, 3.2vw, 50px); font-weight: 300; color: var(--navy); line-height: 1.1; margin-bottom: 12px; }
+  .faq-header h2 em { font-style: italic; color: var(--gold-deep); }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-q { padding: 24px 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; gap: 24px; }
+  .faq-q h4 { font-size: 16px; font-weight: 600; color: var(--navy); line-height: 1.4; }
+  .faq-q:hover h4 { color: var(--gold-deep); }
+  .faq-icon { width: 32px; height: 32px; border: 1.5px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; color: var(--text-mid); font-size: 18px; font-weight: 300; }
+  .faq-item.open .faq-icon { background: var(--gold); border-color: var(--gold); color: var(--navy); transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s; opacity: 0; }
+  .faq-item.open .faq-a { max-height: 200px; opacity: 1; }
+  .faq-a p { font-size: 15px; line-height: 1.8; color: var(--text-mid); padding-bottom: 24px; }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="nav">
+  <a href="index.html" class="logo"><span class="logo-dot"></span>The Solutionists</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Request a Briefing</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-dots"></div>
+  <div class="page-hero-glow"></div>
+  <div class="page-hero-inner">
+    <div class="page-hero-badge"><span class="page-hero-badge-dot"></span><span>Let's Talk</span></div>
+    <h1>Start the <em>conversation.</em></h1>
+    <p>We partner with a select number of Fortune 500 enterprises each year. If you're ready to move beyond annual audits and into real-time risk intelligence, we'd love to hear from you.</p>
+  </div>
+</div>
+
+<div class="ticker"><div class="ticker-inner">
+  <span class="ticker-item">Senior Briefing</span><span class="ticker-item">Capabilities Deck</span><span class="ticker-item">Pilot Engagement</span><span class="ticker-item">Service Inquiry</span><span class="ticker-item">Partnership</span><span class="ticker-item">Advisory</span><span class="ticker-item">Get In Touch</span><span class="ticker-item">No Obligation</span>
+  <span class="ticker-item">Senior Briefing</span><span class="ticker-item">Capabilities Deck</span><span class="ticker-item">Pilot Engagement</span><span class="ticker-item">Service Inquiry</span><span class="ticker-item">Partnership</span><span class="ticker-item">Advisory</span><span class="ticker-item">Get In Touch</span><span class="ticker-item">No Obligation</span>
+</div></div>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="contact-inner">
+
+    <div class="contact-left reveal">
+      <div class="section-label">Get In Touch</div>
+      <h2>We respond to<br>every inquiry <em>personally.</em></h2>
+      <div class="divider"></div>
+      <p>No automated responses, no SDRs, no runaround. When you reach out, a senior partner reviews your inquiry and responds directly. That's the standard we hold ourselves to.</p>
+      <div class="contact-details">
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📬</div>
+          <div><h5>Email</h5><a href="mailto:hello@thesolutionists.com">hello@thesolutionists.com</a></div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">📞</div>
+          <div><h5>Phone</h5><a href="tel:+11234567890">+1 (123) 456-7890</a></div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🌍</div>
+          <div><h5>Global Reach</h5><p>Serving Fortune 500 clients across North America, Europe, and Asia-Pacific</p></div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">⏱️</div>
+          <div><h5>Response Time</h5><p>All inquiries acknowledged within one business day. Senior partner response within 48 hours.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="contact-form-wrap" id="formWrap">
+        <div class="form-title">Request a Senior Briefing</div>
+        <div class="form-subtitle">Tell us about your organization and we'll tailor the conversation to your specific situation.</div>
+
+        <div class="form-row">
+          <div class="form-group"><label>First Name *</label><input type="text" placeholder="James"></div>
+          <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Richardson"></div>
+        </div>
+        <div class="form-group"><label>Work Email *</label><input type="email" placeholder="james@company.com"></div>
+        <div class="form-group"><label>Company *</label><input type="text" placeholder="Your organization"></div>
+        <div class="form-row">
+          <div class="form-group"><label>Your Role *</label>
+            <select>
+              <option value="">Select your role</option>
+              <option>Chief Audit Executive (CAE)</option>
+              <option>Chief Financial Officer (CFO)</option>
+              <option>Chief Risk Officer (CRO)</option>
+              <option>Audit Committee Member</option>
+              <option>Board Director</option>
+              <option>VP / Director of Internal Audit</option>
+              <option>Other Executive</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Primary Interest *</label>
+            <select>
+              <option value="">Select a service</option>
+              <option>AI Governance & Risk</option>
+              <option>Continuous Assurance</option>
+              <option>Board & Audit Committee Advisory</option>
+              <option>Cyber & Digital Resilience</option>
+              <option>ESG & Sustainability Assurance</option>
+              <option>Transformation Assurance</option>
+              <option>Not sure — need guidance</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>Tell us about your situation</label><textarea placeholder="Briefly describe your current challenge or what you're looking to achieve. The more context you share, the more valuable our first conversation will be."></textarea></div>
+        <div class="form-check">
+          <input type="checkbox" id="privacy">
+          <label for="privacy">I agree to The Solutionists' Privacy Policy and consent to being contacted about relevant services. We never share your information with third parties.</label>
+        </div>
+        <button class="form-submit" onclick="submitForm()">Send Request — No Obligation</button>
+      </div>
+
+      <div class="form-success" id="formSuccess">
+        <div class="success-icon">✅</div>
+        <h3>Your request has been received.</h3>
+        <p>A senior partner will review your inquiry and reach out personally within 48 business hours. We look forward to the conversation.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CAPABILITIES DOWNLOAD -->
+<section class="capabilities-section" id="capabilities">
+  <div class="cap-inner reveal">
+    <div class="cap-left">
+      <div class="section-label light">Resources</div>
+      <h2>Take something<br>away <em>with you.</em></h2>
+      <p>Before any engagement, we want you to know exactly what to expect. Download our resources and explore what a partnership with The Solutionists looks like in practice.</p>
+      <a href="#" class="btn-gold" style="display:inline-flex; align-items:center; gap:8px;">Download Full Capabilities Deck
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2v9M4 8l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="cap-right">
+      <div class="cap-item">
+        <div class="cap-item-icon">📄</div>
+        <div class="cap-item-text"><h5>Capabilities Deck</h5><p>Full overview of services, methodology, and team credentials</p></div>
+        <svg class="cap-item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="cap-item">
+        <div class="cap-item-icon">🤖</div>
+        <div class="cap-item-text"><h5>AI Governance Framework Guide</h5><p>Our methodology for auditing artificial intelligence at enterprise scale</p></div>
+        <svg class="cap-item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="cap-item">
+        <div class="cap-item-icon">📊</div>
+        <div class="cap-item-text"><h5>Continuous Assurance Brochure</h5><p>What real-time risk monitoring looks like in practice — with client examples</p></div>
+        <svg class="cap-item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="cap-item">
+        <div class="cap-item-icon">🌿</div>
+        <div class="cap-item-text"><h5>ESG Assurance Readiness Checklist</h5><p>Self-assessment tool for CSRD and SEC Climate disclosure readiness</p></div>
+        <svg class="cap-item-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <div class="faq-header reveal">
+      <div class="section-label" style="justify-content:center">Common Questions</div>
+      <h2>Things people<br>ask us <em>first.</em></h2>
+    </div>
+    <div class="reveal">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><h4>Do you only work with Fortune 500 companies?</h4><div class="faq-icon">+</div></div>
+        <div class="faq-a"><p>Our primary focus is Fortune 500 and large multinational enterprises where the complexity of risk environments matches our level of specialization. However, we also engage with high-growth companies preparing for IPO, and with mid-market organizations undergoing significant digital transformation. Reach out and we'll give you an honest assessment of fit.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><h4>How is working with you different from engaging a Big Four firm?</h4><div class="faq-icon">+</div></div>
+        <div class="faq-a"><p>With Big Four firms, partners win the work and junior teams deliver it. With us, the senior specialists you meet in the pitch are the people doing the work. We're also technology-native — we built continuous monitoring and AI governance as core capabilities, not retrofits to legacy methodology.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><h4>What does a typical engagement look like?</h4><div class="faq-icon">+</div></div>
+        <div class="faq-a"><p>Most engagements begin with a scoping conversation to understand your specific risk environment and objectives. From there we design a bespoke approach — whether that's a focused AI governance review, a full internal audit co-source arrangement, or a board-level risk intelligence briefing. There's no standard template we force every client into.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><h4>How quickly can you mobilize a team?</h4><div class="faq-icon">+</div></div>
+        <div class="faq-a"><p>Significantly faster than large global networks. Because we don't have multi-country resourcing bureaucracy, we can typically have a senior team engaged and scoping within two weeks of contract execution. For urgent situations — a breach response, a regulatory deadline, an M&A timeline — we can move faster.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><h4>Are you IIA standards compliant?</h4><div class="faq-icon">+</div></div>
+        <div class="faq-a"><p>Yes. All our work is conducted in full alignment with the IIA's 2024 Global Internal Audit Standards, the COSO 2013 framework, and applicable regulatory standards for each service area (NIST CSF for cyber, CSRD/TCFD for ESG, etc.). We are happy to provide documentation of our quality assurance processes on request.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><a href="index.html" class="footer-logo"><span class="footer-logo-dot"></span>The Solutionists</a><p class="footer-tagline">Next-generation internal audit and risk intelligence for the world's most complex enterprises.</p></div>
+    <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="about.html#team">Our Team</a></li><li><a href="about.html#standards">Our Standards</a></li></ul></div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#ai">AI Governance</a></li><li><a href="services.html#continuous">Continuous Assurance</a></li><li><a href="services.html#esg">ESG Assurance</a></li><li><a href="services.html#cyber">Cyber Resilience</a></li></ul></div>
+    <div class="footer-col"><h5>Connect</h5><ul><li><a href="contact.html">Request a Briefing</a></li><li><a href="contact.html">Get in Touch</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span class="footer-copy">© 2025 The Solutionists. All rights reserved. IIA Standards Compliant.</span><ul class="footer-legal"><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Use</a></li></ul></div>
+</footer>
+
+<script>
+  const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx-4+'px';cursor.style.top=my-4+'px';});
+  (function loop(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx-14+'px';ring.style.top=ry-14+'px';requestAnimationFrame(loop);})();
+  window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>20));
+
+  function submitForm(){
+    document.getElementById('formWrap').style.display='none';
+    document.getElementById('formSuccess').style.display='block';
+  }
+  window.submitForm=submitForm;
+
+  function toggleFaq(q){
+    const item=q.parentElement;
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen) item.classList.add('open');
+  }
+  window.toggleFaq=toggleFaq;
+
+  document.querySelectorAll('.reveal').forEach(el=>new IntersectionObserver(([e])=>{if(e.isIntersecting)e.target.classList.add('visible');},{threshold:0.08}).observe(el));
+</script>
+</body>
+</html>

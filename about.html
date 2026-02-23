@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — The Solutionists</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+  /* ABOUT STORY */
+  .story-section { background: var(--white); padding: 120px 64px; }
+  .story-grid { display: grid; grid-template-columns: 5fr 7fr; gap: 96px; align-items: start; }
+  .story-left { position: sticky; top: 104px; }
+  .story-left h2 { font-family: 'Fraunces', serif; font-size: clamp(36px, 3.5vw, 56px); font-weight: 300; line-height: 1.08; color: var(--navy); margin-bottom: 24px; }
+  .story-left h2 em { font-style: italic; color: var(--gold-deep); }
+  .story-left .divider { width: 48px; height: 4px; background: linear-gradient(90deg, var(--gold), var(--gold-deep)); border-radius: 4px; margin-bottom: 24px; }
+  .story-left p { font-size: 15px; line-height: 1.8; color: var(--text-mid); }
+  .story-blocks { display: flex; flex-direction: column; }
+  .sb { padding: 44px 0; border-bottom: 1px solid var(--border); }
+  .sb:first-child { padding-top: 0; }
+  .sb:last-child { border-bottom: none; }
+  .sb-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-deep); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .sb-label::after { content: ''; flex: 1; height: 1px; background: var(--border-gold); }
+  .sb-quote { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 300; line-height: 1.55; color: var(--navy); margin-bottom: 16px; font-style: italic; }
+  .sb p { font-size: 15px; line-height: 1.85; color: var(--text-mid); }
+
+  /* VALUES */
+  .values-section { background: var(--off-white); padding: 120px 64px; }
+  .values-header { margin-bottom: 80px; max-width: 600px; }
+  .values-header h2 { font-family: 'Fraunces', serif; font-size: clamp(34px, 3.5vw, 54px); font-weight: 300; color: var(--navy); line-height: 1.1; margin-bottom: 16px; }
+  .values-header h2 em { font-style: italic; color: var(--gold-deep); }
+  .values-header p { font-size: 16px; line-height: 1.75; color: var(--text-mid); }
+  .values-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .value-card { background: var(--white); border-radius: 20px; padding: 44px 40px; border: 1px solid var(--border); display: flex; gap: 28px; align-items: flex-start; transition: all 0.3s; }
+  .value-card:hover { border-color: var(--gold); box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+  .value-icon { width: 52px; height: 52px; background: var(--gold-pale); border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 24px; }
+  .value-card h4 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+  .value-card p { font-size: 14px; line-height: 1.75; color: var(--text-mid); }
+
+  /* TEAM STRIP */
+  .team-section { background: var(--navy); padding: 120px 64px; }
+  .team-header { margin-bottom: 72px; }
+  .team-header h2 { font-family: 'Fraunces', serif; font-size: clamp(34px, 3.5vw, 54px); font-weight: 300; color: var(--white); line-height: 1.1; margin-bottom: 16px; }
+  .team-header h2 em { font-style: italic; color: var(--gold); }
+  .team-header p { font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.45); max-width: 560px; }
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .team-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 40px 36px; transition: all 0.3s; }
+  .team-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(240,165,0,0.4); transform: translateY(-4px); }
+  .team-avatar { width: 64px; height: 64px; background: linear-gradient(135deg, var(--gold), var(--gold-deep)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', serif; font-size: 24px; font-weight: 300; color: var(--navy); margin-bottom: 24px; }
+  .team-card h4 { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .team-card .role { font-size: 13px; color: var(--gold); font-weight: 600; letter-spacing: 0.04em; margin-bottom: 16px; }
+  .team-card p { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.45); }
+
+  /* STANDARDS */
+  .standards-section { background: var(--gold-pale); padding: 120px 64px; }
+  .standards-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: center; }
+  .standards-left h2 { font-family: 'Fraunces', serif; font-size: clamp(34px, 3.5vw, 54px); font-weight: 300; color: var(--navy); line-height: 1.1; margin-bottom: 24px; }
+  .standards-left h2 em { font-style: italic; color: var(--gold-deep); }
+  .standards-left p { font-size: 16px; line-height: 1.8; color: var(--text-mid); margin-bottom: 20px; }
+  .standards-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .std-badge { display: flex; align-items: center; gap: 10px; background: var(--white); border: 1px solid var(--border); border-radius: 100px; padding: 10px 20px; }
+  .std-badge-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+  .std-badge span { font-size: 13px; font-weight: 600; color: var(--navy); }
+  .standards-right { display: flex; flex-direction: column; gap: 4px; }
+  .std-row { background: var(--white); border-radius: 14px; padding: 28px 32px; border: 1px solid var(--border); display: flex; gap: 20px; align-items: flex-start; transition: all 0.3s; }
+  .std-row:hover { border-color: var(--gold); box-shadow: var(--shadow); transform: translateX(6px); }
+  .std-icon { font-size: 24px; flex-shrink: 0; padding-top: 2px; }
+  .std-row h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .std-row p { font-size: 14px; line-height: 1.7; color: var(--text-mid); }
+
+  /* CTA */
+  .cta-strip { background: var(--navy); text-align: center; padding: 120px 64px; position: relative; overflow: hidden; }
+  .cta-strip::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(240,165,0,0.12), transparent); }
+  .cta-strip::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 32px 32px; }
+  .cta-inner { position: relative; z-index: 2; }
+  .cta-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(240,165,0,0.15); border: 1px solid rgba(240,165,0,0.3); border-radius: 100px; padding: 7px 16px; margin-bottom: 36px; }
+  .cta-badge span { font-size: 12px; font-weight: 600; color: var(--gold); letter-spacing: 0.05em; }
+  .cta-strip h2 { font-family: 'Fraunces', serif; font-size: clamp(40px, 4.5vw, 72px); font-weight: 300; color: var(--white); line-height: 1.08; margin-bottom: 20px; }
+  .cta-strip h2 em { font-style: italic; color: var(--gold); }
+  .cta-sub { font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.45); max-width: 480px; margin: 0 auto 52px; }
+  .cta-btns { display: flex; gap: 16px; justify-content: center; align-items: center; }
+  .btn-cta-primary { font-size: 14px; font-weight: 600; color: var(--navy); background: var(--gold); padding: 16px 40px; border-radius: 12px; text-decoration: none; border: 2px solid var(--gold); transition: all 0.25s; }
+  .btn-cta-primary:hover { background: #ffc533; border-color: #ffc533; transform: translateY(-2px); }
+  .btn-cta-outline { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.6); border: 2px solid rgba(255,255,255,0.15); padding: 14px 40px; border-radius: 12px; text-decoration: none; transition: all 0.25s; }
+  .btn-cta-outline:hover { border-color: var(--gold); color: var(--gold); }
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="nav">
+  <a href="index.html" class="logo"><span class="logo-dot"></span>The Solutionists</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Request a Briefing</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-dots"></div>
+  <div class="page-hero-glow"></div>
+  <div class="page-hero-inner">
+    <div class="page-hero-badge"><span class="page-hero-badge-dot"></span><span>Our Story</span></div>
+    <h1>We exist to <em>redefine</em><br>what internal<br>audit means.</h1>
+    <p>Founded on the conviction that Fortune 500 enterprises deserve more than retrospective compliance — they deserve real-time risk intelligence and genuine board-level partnership.</p>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker"><div class="ticker-inner">
+  <span class="ticker-item">Independence</span><span class="ticker-item">Objectivity</span><span class="ticker-item">Integrity</span><span class="ticker-item">Competency</span><span class="ticker-item">IIA 2024 Standards</span><span class="ticker-item">COSO Framework</span><span class="ticker-item">Senior-Led Delivery</span><span class="ticker-item">AI-Augmented Assurance</span>
+  <span class="ticker-item">Independence</span><span class="ticker-item">Objectivity</span><span class="ticker-item">Integrity</span><span class="ticker-item">Competency</span><span class="ticker-item">IIA 2024 Standards</span><span class="ticker-item">COSO Framework</span><span class="ticker-item">Senior-Led Delivery</span><span class="ticker-item">AI-Augmented Assurance</span>
+</div></div>
+
+<!-- STORY -->
+<section class="story-section">
+  <div class="story-grid">
+    <div class="story-left reveal">
+      <div class="section-label">About The Solutionists</div>
+      <h2>Built differently.<br>On <em>purpose.</em></h2>
+      <div class="divider"></div>
+      <p>We spent decades inside the world's largest audit and risk networks — and grew frustrated by the gap between what boards needed and what legacy models could deliver.</p>
+    </div>
+    <div class="story-blocks">
+      <div class="sb reveal">
+        <div class="sb-label">Our Origin</div>
+        <p class="sb-quote">"Annual audits and sampling-based testing cannot protect organizations moving at the speed of AI and digital transformation."</p>
+        <p>The Solutionists was built by senior practitioners who spent decades inside the world's largest audit and risk networks. We grew frustrated by the gap between what Fortune 500 boards needed and what legacy models could deliver. So we closed that gap — permanently.</p>
+      </div>
+      <div class="sb reveal reveal-d1">
+        <div class="sb-label">Our Model</div>
+        <p>We operate as an elite, specialist advisory firm. No large delivery pyramids, no off-shored junior teams. Every engagement is resourced with senior professionals combining deep technical expertise with the strategic acumen to communicate directly at board level. We call it the High-Impact Specialist Pod model — small, accountable, senior, and extraordinarily effective.</p>
+      </div>
+      <div class="sb reveal reveal-d2">
+        <div class="sb-label" id="standards">Our Standards</div>
+        <p>We operate in full alignment with the IIA 2024 Global Internal Audit Standards and the COSO framework — while advancing the profession into a digital-first reality. Independence. Objectivity. Integrity. These aren't compliance checkboxes for us. They're the architecture of every engagement we conduct.</p>
+      </div>
+      <div class="sb reveal reveal-d3">
+        <div class="sb-label">The Future We're Building</div>
+        <p>Internal audit's next chapter is continuous, converged, AI-augmented, and strategically embedded in enterprise decision-making. We're not waiting for that future. We're building it — one board engagement at a time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="values-header reveal">
+    <div class="section-label">What We Stand For</div>
+    <h2>Four principles that<br>drive <em>every engagement</em></h2>
+    <p>Not mission statement wallpaper. These are the filters every decision, every deliverable, every team member is held against.</p>
+  </div>
+  <div class="values-grid reveal">
+    <div class="value-card"><div class="value-icon">🎯</div><div><h4>Foresight Over Findings</h4><p>We measure our success not by the number of findings we report, but by the risks we help our clients avoid entirely. Prediction is the highest form of assurance.</p></div></div>
+    <div class="value-card"><div class="value-icon">🤝</div><div><h4>Radical Transparency</h4><p>We tell boards and audit committees what they need to hear — not what they want to hear. Uncomfortable truths delivered with clarity and respect are the currency of real trust.</p></div></div>
+    <div class="value-card"><div class="value-icon">⚡</div><div><h4>Intelligence at Velocity</h4><p>Risk doesn't wait for quarterly reviews. Neither do we. Our continuous monitoring approach means our clients always have current, actionable intelligence — not stale retrospective data.</p></div></div>
+    <div class="value-card"><div class="value-icon">🔬</div><div><h4>Senior Expertise, Always</h4><p>Every client engagement is led by professionals who have sat in the hot seat — former CAEs, Big Four partners, regulatory veterans. There is no substitute for genuine experience.</p></div></div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section" id="team">
+  <div class="team-header reveal">
+    <div class="section-label light">Our People</div>
+    <h2>Senior specialists.<br><em>No exceptions.</em></h2>
+    <p>Every engagement is led by professionals with deep industry credentials and board-level communication skills. Our people have been in the room — they know what boards actually need.</p>
+  </div>
+  <div class="team-grid reveal">
+    <div class="team-card"><div class="team-avatar">JR</div><h4>James R.</h4><div class="role">Managing Partner — Risk & Governance</div><p>Former Big Four partner with 22 years of enterprise risk advisory. Led internal audit transformations across Fortune 100 financial services and energy companies.</p></div>
+    <div class="team-card"><div class="team-avatar">SP</div><h4>Sophia P.</h4><div class="role">Partner — AI & Digital Risk</div><p>Pioneer in AI governance audit methodology. Previously chief risk officer at a global technology firm. Keynote speaker at leading risk and compliance conferences.</p></div>
+    <div class="team-card"><div class="team-avatar">MK</div><h4>Marcus K.</h4><div class="role">Partner — Cyber & Resilience</div><p>20 years in cybersecurity risk and OT/IT assurance. Designed board-level cyber resilience programs for Fortune 500 manufacturers and healthcare systems.</p></div>
+    <div class="team-card"><div class="team-avatar">AN</div><h4>Anika N.</h4><div class="role">Partner — ESG Assurance</div><p>Led sustainability reporting assurance programs for global consumer brands. Deep expertise in CSRD, SEC Climate disclosure, and supply chain carbon accounting.</p></div>
+    <div class="team-card"><div class="team-avatar">DL</div><h4>Daniel L.</h4><div class="role">Partner — Continuous Assurance</div><p>Built continuous monitoring platforms for three of the world's top 20 banks. Specialist in full-population data analytics and real-time fraud detection architectures.</p></div>
+    <div class="team-card"><div class="team-avatar">RC</div><h4>Riya C.</h4><div class="role">Partner — Transformation Risk</div><p>M&A and ERP transformation risk specialist. Guided post-merger control integration for 40+ enterprise transactions across pharma, tech, and manufacturing sectors.</p></div>
+  </div>
+</section>
+
+<!-- STANDARDS -->
+<section class="standards-section">
+  <div class="standards-inner">
+    <div class="standards-left reveal">
+      <div class="section-label">Our Framework</div>
+      <h2>Global standards.<br><em>Digital-first</em> execution.</h2>
+      <p>We operate in full alignment with the most rigorous global professional standards — while pushing the profession forward into a technology-native future.</p>
+      <p>Compliance with standards is our floor, not our ceiling.</p>
+      <div class="standards-badges">
+        <div class="std-badge"><span class="std-badge-dot"></span><span>IIA 2024 Standards</span></div>
+        <div class="std-badge"><span class="std-badge-dot"></span><span>COSO 2013</span></div>
+        <div class="std-badge"><span class="std-badge-dot"></span><span>NIST CSF</span></div>
+        <div class="std-badge"><span class="std-badge-dot"></span><span>ISO 27001</span></div>
+        <div class="std-badge"><span class="std-badge-dot"></span><span>CSRD / TCFD</span></div>
+      </div>
+    </div>
+    <div class="standards-right reveal">
+      <div class="std-row"><div class="std-icon">🏛️</div><div><h4>IIA 2024 Global Standards</h4><p>Our methodology is fully aligned with the five domains of the new Global Internal Audit Standards — Purpose, Ethics, Governance, Management, and Performance.</p></div></div>
+      <div class="std-row" style="margin-top:4px"><div class="std-icon">🔷</div><div><h4>COSO 2013 Framework</h4><p>Every internal control evaluation follows the five COSO components: control environment, risk assessment, control activities, information & communication, and monitoring.</p></div></div>
+      <div class="std-row" style="margin-top:4px"><div class="std-icon">🔐</div><div><h4>NIST Cybersecurity Framework</h4><p>Our cyber resilience assessments are structured around the NIST CSF's five functions — Identify, Protect, Detect, Respond, and Recover.</p></div></div>
+      <div class="std-row" style="margin-top:4px"><div class="std-icon">🌿</div><div><h4>CSRD & TCFD Alignment</h4><p>Our ESG assurance work is designed to meet the disclosure requirements of CSRD, TCFD, and the SEC's Climate Disclosure Rule.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-strip">
+  <div class="cta-inner">
+    <div class="cta-badge reveal"><span class="page-hero-badge-dot"></span><span>Work With Us</span></div>
+    <h2 class="reveal">Meet the team<br>behind the <em>intelligence.</em></h2>
+    <p class="cta-sub reveal">We'd love to show you what a senior-led, AI-augmented internal audit partnership looks like in practice. Let's start the conversation.</p>
+    <div class="cta-btns reveal"><a href="contact.html" class="btn-cta-primary">Request a Briefing</a><a href="services.html" class="btn-cta-outline">Explore Our Services</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><a href="index.html" class="footer-logo"><span class="footer-logo-dot"></span>The Solutionists</a><p class="footer-tagline">Next-generation internal audit and risk intelligence for the world's most complex enterprises.</p></div>
+    <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="about.html#team">Our Team</a></li><li><a href="about.html#standards">Our Standards</a></li></ul></div>
+    <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html#ai">AI Governance</a></li><li><a href="services.html#continuous">Continuous Assurance</a></li><li><a href="services.html#esg">ESG Assurance</a></li><li><a href="services.html#cyber">Cyber Resilience</a></li></ul></div>
+    <div class="footer-col"><h5>Connect</h5><ul><li><a href="contact.html">Request a Briefing</a></li><li><a href="contact.html">Get in Touch</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span class="footer-copy">© 2025 The Solutionists. All rights reserved. IIA Standards Compliant.</span><ul class="footer-legal"><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Use</a></li></ul></div>
+</footer>
+
+<script>
+  const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx-4+'px';cursor.style.top=my-4+'px';});
+  (function loop(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx-14+'px';ring.style.top=ry-14+'px';requestAnimationFrame(loop);})();
+  window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>20));
+  document.querySelectorAll('.reveal').forEach(el=>new IntersectionObserver(([e])=>{if(e.isIntersecting)e.target.classList.add('visible');},{threshold:0.08}).observe(el));
+</script>
+</body>
+</html>
